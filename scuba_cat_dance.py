@@ -70,46 +70,32 @@ class ScubaCatDance:
         self.latest_landmarks = None
 
     def _select_camera(self):
-        """Escaneia câmeras disponíveis e deixa o usuário escolher."""
-        print("\n📷 Escaneando câmeras disponíveis...")
-        available = []
-        for i in range(5):
-            cap = cv2.VideoCapture(i)
-            if cap.isOpened():
-                w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-                h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-                name = f"Camera {i}"
-                if i == 0:
-                    name += " (provavelmente webcam do Mac)"
-                else:
-                    name += " (pode ser iPhone / camera externa)"
-                available.append((i, name, w, h))
-                cap.release()
-            else:
-                cap.release()
+        """Abre a câmera padrão diretamente.
+        Se o iPhone estiver disponível via Continuity Camera, o macOS
+        vai solicitar automaticamente — o usuário aceita ou recusa no próprio iPhone.
+        """
+        print("\n📷 Abrindo câmera...")
+        cap = cv2.VideoCapture(0)
 
-        if not available:
+        if not cap.isOpened():
+            print("  ❌ Não foi possível abrir a câmera.")
             return None
 
-        if len(available) == 1:
-            idx = available[0][0]
-            print(f"  ✅ Camera encontrada: {available[0][1]} ({available[0][2]}x{available[0][3]})")
-        else:
-            print(f"\n  Cameras encontradas ({len(available)}):")
-            for i, name, w, h in available:
-                print(f"    [{i}] {name} - {w}x{h}")
-            print()
-            try:
-                choice = input("  👉 Digite o numero da camera (ou Enter para 0): ").strip()
-                idx = int(choice) if choice else available[0][0]
-            except (ValueError, EOFError):
-                idx = available[0][0]
-
-        print(f"  🎥 Usando camera {idx}")
-        cap = cv2.VideoCapture(idx)
         cap.set(cv2.CAP_PROP_FRAME_WIDTH, W)
         cap.set(cv2.CAP_PROP_FRAME_HEIGHT, H)
-        return cap if cap.isOpened() else None
+
+        # Aguarda a câmera começar a enviar frames (essencial para Continuity Camera)
+        print("  ⏳ Aguardando primeiros frames...")
+        for i in range(100):  # Tenta por até ~5 segundos
+            ret, _ = cap.read()
+            if ret:
+                print("  ✅ Câmera conectada!")
+                return cap
+            time.sleep(0.05)
+
+        print("  ❌ Câmera abriu mas não enviou frames.")
+        cap.release()
+        return None
 
     def start(self):
         """Inicializa todos os componentes e roda o loop principal."""
@@ -149,9 +135,15 @@ class ScubaCatDance:
 
         # ───── Loop principal (~30fps) ─────
         ts = 0
+        fail_count = 0
         while True:
             ret, frame = self.cap.read()
-            if not ret: break
+            if not ret:
+                fail_count += 1
+                if fail_count > 30:  # ~1 segundo sem frames → encerra
+                    print("\n❌ Câmera desconectada."); break
+                continue
+            fail_count = 0
             frame = cv2.flip(frame, 1)       # Espelha (modo selfie)
             frame = cv2.resize(frame, (W, H))
 
