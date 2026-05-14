@@ -1,14 +1,34 @@
-# 🐱 Scuba Cat Dance
+<div align="center">
+
+<!-- HEADER BANNER -->
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:7f1d1d,50:dc2626,100:991b1b&height=230&section=header&text=Scuba%20Cat%20Dance&fontSize=70&fontColor=ffffff&animation=twinkling&fontAlignY=35&desc=Real-time%20AI%20Gesture%20Recognition&descAlignY=55&descSize=18&descColor=fca5a5" />
+
+<br/>
+
+<!-- BADGES -->
+<div>
+  <img src="https://img.shields.io/badge/Python_3.9+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
+  <img src="https://img.shields.io/badge/OpenCV_4.8+-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white" alt="OpenCV" />
+  <img src="https://img.shields.io/badge/MediaPipe_0.10+-00A67E?style=for-the-badge&logo=google&logoColor=white" alt="MediaPipe" />
+</div>
+
+<br/>
 
 Detecte o **Scuba Cat Dance** em tempo real usando sua webcam! Quando você faz os movimentos certos — tampar o nariz e acenar com a mão — o vídeo do gatinho scuba aparece dançando na tela. 🎉
 
-![Python](https://img.shields.io/badge/Python-3.9+-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![OpenCV](https://img.shields.io/badge/OpenCV-4.8+-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)
-![MediaPipe](https://img.shields.io/badge/MediaPipe-0.10+-00A67E?style=for-the-badge&logo=google&logoColor=white)
+</div>
 
----
+<br/>
 
-## 🎬 Como funciona
+<!-- RED ANIMATED DIVIDER -->
+<img src="https://raw.githubusercontent.com/notcostaip/notcostaip/main/assets/red-divider.svg" width="100%">
+
+<!-- COMO FUNCIONA -->
+<div align="center">
+
+### &nbsp; 🎬 Como funciona
+
+</div>
 
 O app usa **inteligência artificial** (MediaPipe Pose) para detectar 33 pontos do seu corpo pela webcam e analisa **3 gestos simultâneos**:
 
@@ -20,9 +40,15 @@ O app usa **inteligência artificial** (MediaPipe Pose) para detectar 33 pontos 
 
 Quando **nariz tampado + (aceno OU balanço)** persiste por alguns frames → o gatinho aparece! 🐱
 
----
+<!-- RED ANIMATED DIVIDER -->
+<img src="https://raw.githubusercontent.com/notcostaip/notcostaip/main/assets/red-divider.svg" width="100%">
 
-## 🚀 Como rodar
+<!-- COMO RODAR -->
+<div align="center">
+
+### &nbsp; 🚀 Como rodar
+
+</div>
 
 ### 1. Clone o repositório
 ```bash
@@ -46,40 +72,77 @@ pip install -r requirements.txt
 
 ### 4. Execute
 ```bash
-python scuba_cat_dance.py
+python3 scuba_cat_dance.py
 ```
 
----
+<!-- RED ANIMATED DIVIDER -->
+<img src="https://raw.githubusercontent.com/notcostaip/notcostaip/main/assets/red-divider.svg" width="100%">
 
-## 🎮 Controles
+<!-- CONTROLES & NÍVEIS -->
+<div align="center">
+
+### &nbsp; 🎮 Controles & Níveis
+
+</div>
+
+<br/>
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+<h4 align="center">🕹️ Teclas</h3>
 
 | Tecla | Ação |
 |-------|------|
 | `Q` ou `ESC` | Sair |
-| `D` | Ativar/desativar modo Debug (mostra o esqueleto) |
-| `S` | Trocar sensibilidade (Fácil → Médio → Difícil) |
+| `D` | Modo Debug |
+| `S` | Sensibilidade |
 
----
+</td>
+<td width="50%" valign="top">
 
-## 🎚️ Níveis de Sensibilidade
+<h4 align="center">🎚️ Sensibilidade</h3>
 
-| Nível | Detecção | Descrição |
-|-------|----------|-----------|
-| **Fácil** | 5 frames | Thresholds largos, ativa rápido |
-| **Médio** | 10 frames | Equilíbrio entre precisão e facilidade |
-| **Difícil** | 15 frames | Precisa de gestos mais precisos e consistentes |
+| Nível | Frames | Descrição |
+|-------|--------|-----------|
+| **Fácil** | 5 | Ativa rápido |
+| **Médio** | 10 | Equilibrado |
+| **Difícil** | 15 | Exige precisão |
 
----
+</td>
+</tr>
+</table>
 
-## 🛠️ Tecnologias
+<!-- RED ANIMATED DIVIDER -->
+<img src="https://raw.githubusercontent.com/notcostaip/notcostaip/main/assets/red-divider.svg" width="100%">
 
-- **[OpenCV](https://opencv.org/)** — Captura de vídeo, desenho na tela, overlay e efeitos visuais
-- **[MediaPipe](https://mediapipe.dev/)** — Detecção de pose em tempo real (33 landmarks do corpo)
-- **[NumPy](https://numpy.org/)** — Cálculos auxiliares e geração de partículas
+<!-- TECNOLOGIAS -->
+<div align="center">
 
----
+### &nbsp; 🛠️ Tecnologias
 
-## 📁 Estrutura do Projeto
+<br/>
+
+<img src="https://skillicons.dev/icons?i=python,opencv&theme=dark" alt="Tech" />
+
+<br/><br/>
+
+</div>
+
+- **[OpenCV](https://opencv.org/)** — Captura de vídeo e efeitos visuais
+- **[MediaPipe](https://mediapipe.dev/)** — Detecção de pose
+- **[NumPy](https://numpy.org/)** — Cálculos e arrays
+
+<!-- RED ANIMATED DIVIDER -->
+<img src="https://raw.githubusercontent.com/notcostaip/notcostaip/main/assets/red-divider.svg" width="100%">
+
+<!-- ESTRUTURA -->
+<div align="center">
+
+### &nbsp; 📁 Estrutura do Projeto
+
+</div>
 
 ```
 scuba-cat-dance/
@@ -91,8 +154,15 @@ scuba-cat-dance/
     └── scuba_cat_video.mp4         ← Vídeo do gatinho
 ```
 
----
+<br/>
 
-## 📝 Licença
+<!-- FOOTER -->
+<div align="center">
 
-Feito por [Costa](https://github.com/notcostaip) com ☕ e muita diversão.
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:7f1d1d,50:dc2626,100:991b1b&height=130&section=footer" />
+
+<br/>
+
+**Feito por [Costa](https://github.com/notcostaip) com ☕ e muita diversão.**
+
+</div>
